@@ -1,5 +1,10 @@
 from pathlib import Path
 
+from environs import Env
+
+
+env = Env()
+env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,10 +52,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "paprika.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.dj_db_url("DATABASE_URL"),
 }
 
 
