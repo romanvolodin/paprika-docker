@@ -4,6 +4,20 @@
 pip install -r requirements.txt -r requirements-dev.txt
 ```
 
+## Переменные окружения
+
+Создайте корне проекта `.env`-файл с переменными окружения. Пример:
+
+```bash
+POSTGRES_DB=db_name
+POSTGRES_USER=db_user
+POSTGRES_PASSWORD=db_passwd
+
+DATABASE_URL=postgres://db_user:db_passwd@db:5432/db_name
+```
+
+## Запускаем
+
 Запустите базу данных и сайт:
 
 ```bash
