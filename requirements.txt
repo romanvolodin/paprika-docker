@@ -1,3 +1,4 @@
 Django==4.1.*
 environs[django]==9.5.*
+pillow==9.2.*
 psycopg2-binary==2.9.*
