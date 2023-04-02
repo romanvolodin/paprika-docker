@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from import_export.admin import ImportMixin
 
 from .models import Shot, ShotGroup, Version
+from .resources import ShotGroupResource, ShotResource
 
 
 @admin.register(ShotGroup)
-class ShotGroupAdmin(admin.ModelAdmin):
-    pass
+class ShotGroupAdmin(ImportMixin, admin.ModelAdmin):
+    resource_classes = (ShotGroupResource,)
 
 
 class VersionInline(admin.TabularInline):
@@ -16,7 +18,7 @@ class VersionInline(admin.TabularInline):
 
 
 @admin.register(Shot)
-class ShotAdmin(admin.ModelAdmin):
+class ShotAdmin(ImportMixin, admin.ModelAdmin):
     list_display = (
         "title",
         "group",
@@ -29,6 +31,7 @@ class ShotAdmin(admin.ModelAdmin):
         "group",
     )
     inlines = (VersionInline,)
+    resource_classes = (ShotResource,)
 
     @admin.display(description="Latest version")
     def get_latest_version(self, obj):
