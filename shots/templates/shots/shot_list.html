@@ -1,0 +1,15 @@
+{% for shot_group, shots in grouped_shots.items %}
+{% if shots %}
+<h2>{{ shot_group }}</h2>
+
+<table style="border-collapse: collapse;">
+  {% for shot in shots %}
+  <tr>
+    <td style="border: 1px solid;">
+      {{ shot.title }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endfor %}
