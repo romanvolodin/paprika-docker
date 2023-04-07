@@ -7,6 +7,12 @@
   <tr>
     <td style="border: 1px solid;">
       {{ shot.title }}
+      {{shot.tasks.all.0.status}}
+    </td>
+    <td style="border: 1px solid;">
+      {% if shot.tasks.all %}
+      {{ shot.tasks.all.0 }}
+      {% endif %}
     </td>
   </tr>
   {% endfor %}
