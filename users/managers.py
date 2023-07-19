@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class UserManager(BaseUserManager):
     """
-    Custom User model manager where email is the unique indentifier.
+    Custom User model manager where email is the unique identifier.
     """
 
     use_in_migrations = True
