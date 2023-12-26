@@ -4,6 +4,7 @@ from django.db import models
 
 class Project(models.Model):
     name = models.CharField("название", max_length=150)
+    code = models.CharField("код проекта", max_length=5)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
