@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from import_export.admin import ImportMixin
 
+from tasks.models import Task
+
 from .models import Shot, ShotGroup, Version
 from .resources import ShotGroupResource, ShotResource
 
@@ -9,6 +11,12 @@ from .resources import ShotGroupResource, ShotResource
 @admin.register(ShotGroup)
 class ShotGroupAdmin(ImportMixin, admin.ModelAdmin):
     resource_classes = (ShotGroupResource,)
+
+
+class TaskInline(admin.TabularInline):
+    model = Task
+    show_change_link = True
+    extra = 0
 
 
 class VersionInline(admin.TabularInline):
@@ -30,7 +38,10 @@ class ShotAdmin(ImportMixin, admin.ModelAdmin):
         "group__project",
         "group",
     )
-    inlines = (VersionInline,)
+    inlines = (
+        TaskInline,
+        VersionInline,
+    )
     resource_classes = (ShotResource,)
 
     @admin.display(description="Latest version")
